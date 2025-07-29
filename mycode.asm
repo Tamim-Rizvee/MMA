@@ -1,0 +1,15 @@
+.MODEL SMALL
+.STACK 
+.DATA  
+    MES DB 'HELLO WORLD$' ,0
+.CODE
+
+MAIN PROC
+   MOV AX, @DATA  
+   MOV DS , AX
+   MOV AH , 09H
+   LEA DX , MES
+   INT 21H
+    
+   MAIN ENDP
+END MAIN
