@@ -58,11 +58,13 @@ outer:
             cmp cl , stn
             jg  label3
             
-            cmp ch , 1
-            je  print_one
-            jmp print_zero
             
-         jump_here:
+            mov dl , ch
+            add dl , '0'
+            mov ah , 02h
+            int 21h
+            
+            
             inc cl 
             xor ch , 1
             jmp print
@@ -75,20 +77,6 @@ outer:
         int 21h
         
         jmp outer         
-            
-        
-        
-print_one:
-    mov ah , 02h
-    mov dl , '1'
-    int 21h 
-    jmp jump_here
-    
-print_zero:
-    mov ah , 02h
-    mov dl , '0'
-    int 21h 
-    jmp jump_here
          
 label4:
     dec n
@@ -117,11 +105,12 @@ outer2:
             cmp cl , bl 
             jg  label7
             
-            cmp ch , 1
-            je  print_one2
-            jmp print_zero2
+            mov dl , ch
+            add dl , '0'
+            mov ah , 02h
+            int 21h
             
-        jmp_here:
+            
             inc cl
             xor ch , 1 
             jmp print2
@@ -134,20 +123,6 @@ outer2:
         dec bl
         inc space
         jmp outer2 
-        
-        
-print_one2:
-    mov ah , 02h
-    mov dl , '1'
-    int 21h
-    jmp jmp_here 
-    
-print_zero2:
-    mov ah , 02h
-    mov dl , '0'
-    int 21h
-    jmp jmp_here
-            
 
 label5:         
     main endp
